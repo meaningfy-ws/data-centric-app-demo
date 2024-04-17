@@ -1,0 +1,3 @@
+
+run-behave:
+	@	behave tests
