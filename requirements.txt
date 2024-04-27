@@ -1,1 +1,4 @@
 behave~=1.2.6
+calamus~=0.4.2
+pydantic~=2.7.0
+rdflib~=6.3.2
