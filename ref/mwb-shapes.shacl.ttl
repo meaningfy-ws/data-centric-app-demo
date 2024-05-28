@@ -1,0 +1,87 @@
+@prefix mnfy: <https://meaningfy.ws/data-centric-app-demo/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix schema1: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mnfy:Container a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:class mnfy:Company ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path mnfy:companies ],
+        [ sh:class schema1:Person ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path mnfy:persons ] ;
+    sh:targetClass mnfy:Container .
+
+mnfy:Company a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mnfy:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "name of the person" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:class schema1:Person ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path mnfy:employs ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:telephone ;
+            sh:pattern "^[\\d\\(\\)\\-]+$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "other names for the person" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mnfy:aliases ] ;
+    sh:targetClass mnfy:Company .
+
+schema1:Person a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "other names for the person" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mnfy:aliases ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:telephone ;
+            sh:pattern "^[\\d\\(\\)\\-]+$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "name of the person" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path schema1:name ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mnfy:id ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:maxInclusive 200 ;
+            sh:minInclusive 0 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path mnfy:age ] ;
+    sh:targetClass schema1:Person .
+
+
