@@ -1,0 +1,17 @@
+version: '3'
+services:
+
+  fluree:
+    image: fluree/server:stable
+    container_name: fluree
+    networks:
+      - default
+    environment:
+      FDB_GROUP_PRIVATE_KEY: 12341234 # Not teste yet
+    ports:
+      - "58090:8090"
+    volumes:
+      - fluree_server_volume:/opt/fluree-server/data
+
+volumes:
+  fluree_server_volume:
