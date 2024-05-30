@@ -1,0 +1,156 @@
+@prefix mnfy: <https://meaningfy.ws/data-centric-app-demo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://meaningfy.ws/data-centric-app-demo.owl.ttl> a owl:Ontology ;
+    rdfs:label "data-centric-app-demo" .
+
+mnfy:Container a owl:Class ;
+    rdfs:label "Container" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:persons ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:companies ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom mnfy:Person ;
+            owl:onProperty mnfy:persons ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom mnfy:Company ;
+            owl:onProperty mnfy:companies ] ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:Company a owl:Class ;
+    rdfs:label "Company" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:aliases ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:onDatatype xsd:string ;
+                    owl:withRestrictions ( [ xsd:pattern "^[\\d\\(\\)\\-]+$" ] ) ] ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom mnfy:Person ;
+            owl:onProperty mnfy:employs ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:employs ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:aliases ] ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:onDatatype xsd:string ;
+                    owl:withRestrictions ( [ xsd:pattern "^[\\d\\(\\)\\-]+$" ] ) ] ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:age ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:intersectionOf ( xsd:integer [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 0 ] ) ] [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 200 ] ) ] ) ] ;
+            owl:onProperty mnfy:age ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:aliases ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:aliases ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:age ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:id ] ;
+    skos:exactMatch schema1:Person ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:companies a owl:ObjectProperty ;
+    rdfs:label "companies" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:employs a owl:ObjectProperty ;
+    rdfs:label "employs" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:persons a owl:ObjectProperty ;
+    rdfs:label "persons" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:age a owl:DatatypeProperty ;
+    rdfs:label "age" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:aliases a owl:DatatypeProperty .
+
+mnfy:id a owl:DatatypeProperty .
+
+mnfy:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    skos:definition "name of the person" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+mnfy:phone a owl:DatatypeProperty ;
+    rdfs:label "phone" ;
+    skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
+
+

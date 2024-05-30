@@ -1,0 +1,12 @@
+persons:
+  - id: mnfy:1234
+    name: Clark Kent
+    age: 33
+    phone: 555-555-5555
+  - id: mnfy:4567
+    name: Lois Lane
+    age: 34
+companies:
+  - id: mnfy:7890
+    name: ABC Inc.
+    phone: 555-555-5555
