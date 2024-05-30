@@ -4,9 +4,12 @@ import abc
 class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
-    def transaction(self, data):
+    def add(self, data):
         raise NotImplementedError
 
+    @abc.abstractmethod
+    def get_by_id(self, data):
+        raise NotImplementedError
 
     @abc.abstractmethod
     def delete(self, data):
@@ -15,4 +18,9 @@ class AbstractRepository(abc.ABC):
 
     @abc.abstractmethod
     def update(self, data):
+        raise NotImplementedError
+
+
+    @abc.abstractmethod
+    def list(self):
         raise NotImplementedError
