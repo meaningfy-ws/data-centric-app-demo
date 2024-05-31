@@ -6,8 +6,8 @@ services:
     container_name: fluree
     networks:
       - default
-    environment:
-      FDB_GROUP_PRIVATE_KEY: 12341234 # Not teste yet
+    #environment:
+      #FDB_GROUP_PRIVATE_KEY: 12341234 # Not tested yet
     ports:
       - "58090:8090"
     volumes:
