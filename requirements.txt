@@ -1,7 +1,6 @@
 behave~=1.2.6
-#notebook~=7.2.0
-#linkml~=1.7.10
-aioflureedb[domainapi]~=0.8.3
+notebook~=7.2.0
+linkml~=1.7.10
 jupyter~=1.0.0
 phonenumbers~=8.13.37
 pydantic-extra-types~=2.7.0
