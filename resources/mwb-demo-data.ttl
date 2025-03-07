@@ -1,0 +1,22 @@
+@prefix mnfy: <https://meaningfy.ws/data-centric-app-demo/> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+mnfy:1234 a schema1:Person ;
+    schema1:name "Clark Kent" ;
+    schema1:telephone "555-555-5555" ;
+    mnfy:age 33 .
+
+mnfy:4567 a schema1:Person ;
+    schema1:name "Lois Lane" ;
+    mnfy:age 34 .
+
+mnfy:7890 a mnfy:Company ;
+    schema1:name "ABC Inc." ;
+    schema1:telephone "555-555-5555" .
+
+[] a mnfy:Container ;
+    mnfy:companies mnfy:7890 ;
+    mnfy:persons mnfy:1234,
+        mnfy:4567 .
+
