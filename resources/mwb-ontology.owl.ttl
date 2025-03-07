@@ -15,11 +15,11 @@ mnfy:Container a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty mnfy:persons ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty mnfy:companies ],
-        [ a owl:Restriction ;
             owl:allValuesFrom mnfy:Person ;
             owl:onProperty mnfy:persons ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:companies ],
         [ a owl:Restriction ;
             owl:allValuesFrom mnfy:Company ;
             owl:onProperty mnfy:companies ] ;
@@ -28,19 +28,34 @@ mnfy:Container a owl:Class ;
 mnfy:Company a owl:Class ;
     rdfs:label "Company" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:aliases ],
+        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty mnfy:aliases ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty mnfy:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
+            owl:maxCardinality 1 ;
             owl:onProperty mnfy:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty mnfy:name ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom mnfy:Person ;
+            owl:onProperty mnfy:employs ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty mnfy:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
@@ -48,48 +63,16 @@ mnfy:Company a owl:Class ;
                     owl:withRestrictions ( [ xsd:pattern "^[\\d\\(\\)\\-]+$" ] ) ] ;
             owl:onProperty mnfy:phone ],
         [ a owl:Restriction ;
-            owl:allValuesFrom mnfy:Person ;
-            owl:onProperty mnfy:employs ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty mnfy:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty mnfy:phone ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty mnfy:phone ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty mnfy:employs ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty mnfy:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty mnfy:aliases ] ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:name ] ;
     skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
 
 mnfy:Person a owl:Class ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:onDatatype xsd:string ;
-                    owl:withRestrictions ( [ xsd:pattern "^[\\d\\(\\)\\-]+$" ] ) ] ;
-            owl:onProperty mnfy:phone ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty mnfy:name ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty mnfy:phone ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty mnfy:age ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty mnfy:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:intersectionOf ( xsd:integer [ a rdfs:Datatype ;
                                 owl:onDatatype xsd:integer ;
@@ -98,29 +81,46 @@ mnfy:Person a owl:Class ;
                                 owl:withRestrictions ( [ xsd:maxInclusive 200 ] ) ] ) ] ;
             owl:onProperty mnfy:age ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:age ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty mnfy:aliases ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:phone ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty mnfy:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty mnfy:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty mnfy:phone ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty mnfy:aliases ],
-        [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty mnfy:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty mnfy:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty mnfy:age ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty mnfy:id ],
+            owl:minCardinality 0 ;
+            owl:onProperty mnfy:aliases ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty mnfy:id ] ;
+            owl:allValuesFrom [ a rdfs:Datatype ;
+                    owl:onDatatype xsd:string ;
+                    owl:withRestrictions ( [ xsd:pattern "^[\\d\\(\\)\\-]+$" ] ) ] ;
+            owl:onProperty mnfy:phone ] ;
     skos:exactMatch schema1:Person ;
     skos:inScheme <https://meaningfy.ws/data-centric-app-demo> .
 

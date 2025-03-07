@@ -20,11 +20,10 @@ mnfy:Container a sh:NodeShape ;
 mnfy:Company a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path mnfy:id ],
+    sh:property [ sh:class schema1:Person ;
+            sh:nodeKind sh:IRI ;
+            sh:order 4 ;
+            sh:path mnfy:employs ],
         [ sh:datatype xsd:string ;
             sh:description "name of the person" ;
             sh:maxCount 1 ;
@@ -32,10 +31,11 @@ mnfy:Company a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path schema1:name ],
-        [ sh:class schema1:Person ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path mnfy:employs ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path mnfy:id ],
         [ sh:datatype xsd:string ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -53,17 +53,6 @@ schema1:Person a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "other names for the person" ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path mnfy:aliases ],
-        [ sh:datatype xsd:string ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path schema1:telephone ;
-            sh:pattern "^[\\d\\(\\)\\-]+$" ],
-        [ sh:datatype xsd:string ;
             sh:description "name of the person" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
@@ -75,6 +64,17 @@ schema1:Person a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path mnfy:id ],
+        [ sh:datatype xsd:string ;
+            sh:description "other names for the person" ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path mnfy:aliases ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:telephone ;
+            sh:pattern "^[\\d\\(\\)\\-]+$" ],
         [ sh:datatype xsd:integer ;
             sh:maxCount 1 ;
             sh:maxInclusive 200 ;
